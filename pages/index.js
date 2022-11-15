@@ -51,6 +51,7 @@ export default function Home() {
     <div className={styles.container}>
       <input type='text' onChange={changeAddressHandler}></input>
       <iframe
+        className={styles.map}
         height='450'
         loading='lazy'
         allowFullScreen
