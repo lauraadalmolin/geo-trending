@@ -2,7 +2,6 @@ import config from '../../config.json';
 
 export default async function handler(req, res) {
   const search = req.query.search;
-  console.log(search);
   const url = assembleUrl(search);
   const apiRes = await fetch(url);
   const response = await apiRes.json();
