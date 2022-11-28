@@ -28,7 +28,7 @@ const formatTimestampToDateAndTime = (timestamp) => {
   const time = getTime(arr);
   const date = new Date(`${dateStr}T${time}.000+00:00`);
   
-  return date.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
+  return date.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 }
 
 export { formatTimestampToDateAndTime };
