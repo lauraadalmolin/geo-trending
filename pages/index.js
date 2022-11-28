@@ -6,6 +6,8 @@ import styles from '../styles/Home.module.css'
 
 import config from '../config.json';
 
+import { formatTimestampToDateAndTime } from '../utils/strings';
+
 export default function Home() {
   const [address, setAddress] = useState('Rio+Grande+RS');
   const [tweets, setTweets] = useState([]);
@@ -43,13 +45,29 @@ export default function Home() {
     debouncedSearch(event.target.value);
   };
 
+  // const time = (duration) => {
+  //   var MyOffset = (duration.getTimezoneOffset())/-60;
+  //   console.log(MyOffset);
+  // }
+  
+  // function convertDateToUTC(date) { 
+  //   return new Date(
+  //     date.getUTCFullYear(),
+  //     date.getUTCMonth(),
+  //     date.getUTCDate(),
+  //     date.getUTCHours(),
+  //     date.getUTCMinutes(),
+  //     date.getUTCSeconds()); 
+  //   }
+
   useEffect(() => {
     getGeoLocation(address);
   }, [address]);
 
   return (
     <div className={styles.container}>
-      <input type='text' onChange={changeAddressHandler}></input>
+      <input className={styles.search} type='text' placeholder="  Rio Grande" onChange={changeAddressHandler}>
+      </input>
       <iframe
         className={styles.map}
         height='450'
@@ -83,8 +101,8 @@ export default function Home() {
                   <span className={styles.interaction}>
                     <AiFillHeart className={styles.icon} /> {el.favorite_count}
                   </span>
+                  <p className={styles.date}>{formatTimestampToDateAndTime(el.created_at)}</p>
                 </div>
-                {/* <p>{el.created_at}</p> */}
               </div>
             );
           })
