@@ -1,11 +1,19 @@
+.all{
+  display: flex;
+  flex-direction: row;
+}
+
 .container {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
+  width: 50%;
+  margin-right: 20px;
 }
  
 .search {
   border-radius: 10px;
   border-color: rgb(154, 182, 235);
+  color: rgb(154, 182, 235);
   height: 30px;
   margin: 0px 0 6px;
   border-width: medium;
