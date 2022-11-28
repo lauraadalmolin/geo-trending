@@ -5,6 +5,7 @@ import { AiFillHeart, AiOutlineRetweet } from 'react-icons/ai';
 import styles from '../styles/Home.module.css'
 
 import config from '../config.json';
+import { formatTimestampToDateAndTime } from '../utils/strings';
 
 export default function Home() {
   const [address, setAddress] = useState('Rio+Grande+RS');
@@ -84,7 +85,7 @@ export default function Home() {
                     <AiFillHeart className={styles.icon} /> {el.favorite_count}
                   </span>
                 </div>
-                {/* <p>{el.created_at}</p> */}
+                <p>{ formatTimestampToDateAndTime(el.created_at) }</p>
               </div>
             );
           })
