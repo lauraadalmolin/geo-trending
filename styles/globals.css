@@ -1,3 +1,9 @@
+:root {
+  --light-gray: rgb(245, 245, 245);
+  --medium-gray: #6F7D88;
+  --dark-gray: rgb(44, 44, 44);
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -10,7 +16,7 @@ body {
 
 html {
   box-sizing: border-box;
-  background-image: url('/background4.webp');
+  background-image: url('/background.webp');
   background-size: 500px;
   background-repeat: repeat;
 }
