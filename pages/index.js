@@ -6,11 +6,19 @@ import SkeletonTweets from '../components/skeleton-tweets';
 
 import styles from '../styles/Home.module.css'
 
+let BASE_URL = '';
+
+const env = process.env.NODE_ENV;
+if (env === 'development') {
+  BASE_URL = 'http://localhost:3000';
+} else {
+  BASE_URL = '${BASE_URL}';
+}
 
 // Criação do componente principal
 export default function Home() {
-  const [googleMapsAPIKey, _] = useState(process.env.GOOGLE_MAPS_API_KEY);
-
+  const [googleMapsAPIUrl, setGoogleMapsAPIUrl] = useState();
+  
   // Criação do estado de endereço, setando o estado inicial como Rio+Grande+RS
   const [address, setAddress] = useState('Rio+Grande+RS');
   
@@ -44,7 +52,7 @@ export default function Home() {
   const getGeoLocation = async (address) => {
     try {
       setTweets([]);
-      const url = `https://geo-trending-ds.herokuapp.com/api/forward-geocoding?search=${address}`;
+      const url = `${BASE_URL}/api/forward-geocoding?search=${address}`;
       const res = await fetch(url);
       const { data } = await res.json();
       const { latitude, longitude } = data[0];
@@ -58,7 +66,7 @@ export default function Home() {
   // obtidas através da API de geolocalização
   const getTweets = async (lat, long) => {
     try {
-      const url = `https://geo-trending-ds.herokuapp.com/api/get-tweets?lat=${lat}&long=${long}`;
+      const url = `${BASE_URL}/api/get-tweets?lat=${lat}&long=${long}`;
       const res = await fetch(url);
       const response = await res.json();
       setTweets(response.statuses);
@@ -67,11 +75,23 @@ export default function Home() {
     }
   };
 
+  const getGoogleMapsUrl = async () => {
+    try {
+      const url = `${BASE_URL}/api/google-maps-url`;
+      const res = await fetch(url);
+      const response = await res.json();
+      setGoogleMapsAPIUrl(response.url);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   // Hook do react para fazer a primeira busca por endereço
   // Essa busca só será realizada uma única vez no load da aplicação
   // A busca será realizada com base no endereço padrão (Rio+Grande+RS)
   // O ponto de entrada das demais buscas é a função changeAddressHandler
   useEffect(() => {
+    getGoogleMapsUrl();
     getGeoLocation(address);
   }, []);
 
@@ -90,13 +110,13 @@ export default function Home() {
           onChange={changeAddressHandler}/>
 
         {/* Utilização da API Maps Embed da Google para exibir no mapa o endereço inputado pelo usuário*/}
-        <iframe
+        { googleMapsAPIUrl && <iframe
           className={styles.map}
           height='450'
           loading='lazy'
           allowFullScreen
           referrerPolicy='no-referrer-when-downgrade'
-          src={`https://www.google.com/maps/embed/v1/place?key=${googleMapsAPIKey}&q=${address}`}/>
+          src={`${googleMapsAPIUrl}&q=${address}`}/> }
       </div>
       <div className={styles.column}>
         {/* Aqui é feita a validação do vetor tweets. Caso ele esteja vazio, mostra-se a tela de carregamento */}
