@@ -6,11 +6,11 @@ import SkeletonTweets from '../components/skeleton-tweets';
 
 import styles from '../styles/Home.module.css'
 
-const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
 
 // Criação do componente principal
 export default function Home() {
-  
+  const [googleMapsAPIKey, _] = useState(process.env.GOOGLE_MAPS_API_KEY);
+
   // Criação do estado de endereço, setando o estado inicial como Rio+Grande+RS
   const [address, setAddress] = useState('Rio+Grande+RS');
   
