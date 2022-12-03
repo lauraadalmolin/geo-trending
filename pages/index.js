@@ -44,7 +44,7 @@ export default function Home() {
   const getGeoLocation = async (address) => {
     try {
       setTweets([]);
-      const url = `http://localhost:3000/api/forward-geocoding?search=${address}`;
+      const url = `https://geo-trending-ds.herokuapp.com/api/forward-geocoding?search=${address}`;
       const res = await fetch(url);
       const { data } = await res.json();
       const { latitude, longitude } = data[0];
@@ -58,7 +58,7 @@ export default function Home() {
   // obtidas através da API de geolocalização
   const getTweets = async (lat, long) => {
     try {
-      const url = `http://localhost:3000/api/get-tweets?lat=${lat}&long=${long}`;
+      const url = `https://geo-trending-ds.herokuapp.com/api/get-tweets?lat=${lat}&long=${long}`;
       const res = await fetch(url);
       const response = await res.json();
       setTweets(response.statuses);
