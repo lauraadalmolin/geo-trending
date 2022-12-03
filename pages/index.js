@@ -6,9 +6,11 @@ import SkeletonTweets from '../components/skeleton-tweets';
 
 import styles from '../styles/Home.module.css'
 
+const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
+
 // Criação do componente principal
 export default function Home() {
-
+  
   // Criação do estado de endereço, setando o estado inicial como Rio+Grande+RS
   const [address, setAddress] = useState('Rio+Grande+RS');
   
@@ -94,7 +96,7 @@ export default function Home() {
           loading='lazy'
           allowFullScreen
           referrerPolicy='no-referrer-when-downgrade'
-          src={`https://www.google.com/maps/embed/v1/place?key=${process.env.GOOGLE_MAPS_API_KEY}&q=${address}`}/>
+          src={`https://www.google.com/maps/embed/v1/place?key=${googleMapsAPIKey}&q=${address}`}/>
       </div>
       <div className={styles.column}>
         {/* Aqui é feita a validação do vetor tweets. Caso ele esteja vazio, mostra-se a tela de carregamento */}
