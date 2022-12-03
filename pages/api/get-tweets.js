@@ -24,6 +24,5 @@ export default async function handler(req, res) {
 const assembleUrl = (lat, long) => {
   let url = `https://api.twitter.com/1.1/search/tweets.json?`
   url += `geocode=${lat},${long},25mi`;
-  console.log(url);
   return url;
 };
