@@ -1,5 +1,3 @@
-import config from '../../config.json';
-
 // Handler da rota: quando chamar localhost:3000/get-tweets
 // essa função será executada
 export default async function handler(req, res) {
@@ -12,7 +10,7 @@ export default async function handler(req, res) {
   // Faz a requisição passando também o bearer token através dos headers
   // armazena a resposta em apiRes
   const apiRes = await fetch(url, {
-    headers: { Authorization: 'Bearer ' + config.twitterBearerToken },
+    headers: { Authorization: 'Bearer ' + process.env.TWITTER_BEARER_TOKEN },
   });
 
   // Faz um parse da resposta para json
