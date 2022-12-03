@@ -62,6 +62,7 @@
     align-items: stretch;
     justify-content: center;
     border-radius: 6px;
+    padding: 1rem;
   }
 
   .column {
