@@ -12,7 +12,7 @@ const env = process.env.NODE_ENV;
 if (env === 'development') {
   BASE_URL = 'http://localhost:3000';
 } else {
-  BASE_URL = '${BASE_URL}';
+  BASE_URL = 'https://geo-trending-ds.herokuapp.com/';
 }
 
 // Criação do componente principal
