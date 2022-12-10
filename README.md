@@ -2,7 +2,7 @@
 
 Find what is being tweeted around an inputed address.
 
-![Project demo](https://github.com/lauraadalmolin/geo-trending/blob/main/public/../../../../../../../public/demo.png)
+![Project demo](https://github.com/lauraadalmolin/geo-trending/blob/main/public/demo.png)
 
 Test a demo of this project [here](https://geo-trending-ds.herokuapp.com/).
 
