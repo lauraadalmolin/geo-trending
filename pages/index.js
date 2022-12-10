@@ -72,7 +72,7 @@ export default function Home() {
       const url = `${BASE_URL}/api/get-tweets?lat=${lat}&long=${long}`;
       const res = await fetch(url);
       const response = await res.json();
-      setTweets(response.statuses.slice(0, 5));
+      setTweets(response.statuses);
     } catch (err) {
       console.log(err);
     }
