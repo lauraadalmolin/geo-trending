@@ -8,6 +8,9 @@ import styles from '../styles/Home.module.css'
 
 let BASE_URL = '';
 
+// Verifica se a aplicação está sendo rodada em modo
+// de desenvolvimento ou se está rodando no heroku
+// Assim, define a BASE_URL correta baseado no contexto da aplicação
 const env = process.env.NODE_ENV;
 if (env === 'development') {
   BASE_URL = 'http://localhost:3000';
@@ -69,12 +72,14 @@ export default function Home() {
       const url = `${BASE_URL}/api/get-tweets?lat=${lat}&long=${long}`;
       const res = await fetch(url);
       const response = await res.json();
-      setTweets(response.statuses);
+      setTweets(response.statuses.slice(0, 5));
     } catch (err) {
       console.log(err);
     }
   };
 
+  // Realiza a criação da URL da API do google maps buscando 
+  // as variáveis de ambiente configuradas
   const getGoogleMapsUrl = async () => {
     try {
       const url = `${BASE_URL}/api/google-maps-url`;

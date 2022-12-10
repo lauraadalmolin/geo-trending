@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import '../styles/globals.css';
 
-//essa é função principal responsavel pela pagina, definindo o cabeçalho da aplicação
+// Essa é o ponto de entrada da aplicação, todos os demais componentes
+// são carregados a partir daqui
 function MyApp({ Component, pageProps }) {
   return (
     <div>
